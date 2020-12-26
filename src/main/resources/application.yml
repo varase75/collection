@@ -1,0 +1,28 @@
+server:
+  address: 0.0.0.0
+  port: 8443
+  
+logging:
+  level:
+    root: info
+
+spring:
+  autoconfigure:
+    exclude: org.springframework.boot.autoconfigure.web.servlet.error.ErrorMvcAutoConfiguration, org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration
+
+my-filter:
+  unsplash-connector:
+    timeout:
+      connection-timeout: 10000
+      socket-timeout: 10000
+    security:
+      oauth2:
+        client:
+          client-id: NKgebvTOQAzyw1w_4sunp6fltPjP7QHPio7nSPUY4ME
+          client-secret: jY5VtTH8jTFVKD0iyw6zwuxsxQ8DIK-bKDvNTYa1Wjk 
+          access-token-uri: https://unsplash.com/oauth/token
+          grant-type: authorization_code
+          scope: apim:api_create
+  unsplash:
+    endpoint:
+      collection: https://api.unsplash.com/collections?per_page={per_page}
