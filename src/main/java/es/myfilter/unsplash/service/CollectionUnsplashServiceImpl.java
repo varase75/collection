@@ -23,7 +23,7 @@ public class CollectionUnsplashServiceImpl implements CollectionUnsplashService 
     }
 
     @Override
-	public List<ItemDto> getCollection(final String filter) {
+    public List<ItemDto> getCollection(final String filter) {
     	final List<ItemDto> list = new ArrayList<>();
 
     	List<ItemUnsplashDto> items = collectionUnsplashInvokerService.invoke();
