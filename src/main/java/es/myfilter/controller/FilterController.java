@@ -31,7 +31,7 @@ public class FilterController {
 		@ApiResponse(code = 500, message = "Internal error")
 	})
     @GetMapping("/all")
-    public List<ItemDto> getCollection(@ApiParam(value = "Filtro aplicado", required = false) @RequestParam(value = "filter", required = false, defaultValue = "") String filter) {
+    public List<ItemDto> getCollection(@ApiParam(value = "Filtro aplicado", required = false) @RequestParam(value = "filter", required = false) String filter) {
     	return collectionHandlerPort.getCollection(filter);
     }
 
