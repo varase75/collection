@@ -2,6 +2,7 @@ package es.myfilter.unsplash.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -26,9 +27,11 @@ public class CollectionUnsplashServiceImpl implements CollectionUnsplashService 
     	final List<ItemDto> list = new ArrayList<>();
 
     	List<ItemUnsplashDto> items = collectionUnsplashInvokerService.invoke();
-    	items = items.parallelStream()
-    		.filter(item -> isContainsFiter(item, filter))
-    		.collect(Collectors.toList());
+    	if (Optional.ofNullable(filter).isPresent()) {
+	    	items = items.parallelStream()
+	    		.filter(item -> isContainsFiter(item, filter))
+	    		.collect(Collectors.toList());
+    	}
 
     	items.forEach(item -> {
     		list.add(itemUnsplashDtoMapper.toDomain(item));
